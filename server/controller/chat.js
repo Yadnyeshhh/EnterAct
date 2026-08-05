@@ -1,6 +1,9 @@
 import { StreamChat } from "stream-chat";
-const apiChat = "az7swwjyh7mr";
+const apiChat =
+  process.env.STREAM_CHAT_API_KEY || process.env.STREAM_API_KEY || "az7swwjyh7mr";
 const secretChat =
+  process.env.STREAM_CHAT_SECRET_KEY ||
+  process.env.STREAM_SECRET_KEY ||
   "62j53umaeay6tr433g3h9m889z7xz8xswvawcxr633fphtcevxtabc9jxewp6keq";
 const chatClient = StreamChat.getInstance(apiChat, secretChat);
 

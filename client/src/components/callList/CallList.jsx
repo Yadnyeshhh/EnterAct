@@ -92,8 +92,10 @@ const CallList = ({ type }) => {
                   <Button
                     variant="secondary"
                     onClick={() => {
+                      const baseUrl =
+                        import.meta.env.VITE_BASE_URL || window.location.origin;
                       navigator.clipboard.writeText(
-                        `http://localhost:5173/meeting/${meeting?.id}`
+                        `${baseUrl}/meeting/${meeting?.id}`
                       );
                       toast({ title: "copied!" });
                     }}

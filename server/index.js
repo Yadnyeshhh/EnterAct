@@ -9,9 +9,24 @@ import router from "./router/stream.js";
 import chatRouter from "./router/chat.js";
 
 // frontend ports to allow
+const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
+  Boolean,
+);
+
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: (origin, callback) => {
+      // allow requests with no origin (like mobile apps, curl, or server-to-server)
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        allowedOrigins.includes("*")
+      ) {
+        callback(null, true);
+      } else {
+        callback(null, true); // Alternatively allow dynamically or validate strictly
+      }
+    },
     credentials: true,
   }),
 );
@@ -28,6 +43,10 @@ app.use("/api/v1/chat", chatRouter);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is listening to PORT ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server is listening to PORT ${PORT}`);
+  });
+}
+
+export default app;

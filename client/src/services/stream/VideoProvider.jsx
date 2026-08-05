@@ -18,8 +18,10 @@ const VideoProvider = ({ children }) => {
 
     const tokenProvider = async () => {
       try {
+        const apiBaseUrl =
+          import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
         const response = await axios.get(
-          `http://localhost:3000/api/v1/stream/token-provider/${sanitizedId}`,
+          `${apiBaseUrl}/api/v1/stream/token-provider/${sanitizedId}`,
         );
 
         const { token } = response.data;

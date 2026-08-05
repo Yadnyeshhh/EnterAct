@@ -196,9 +196,10 @@ const CreateMeet = () => {
                   <Button
                     variant="secondary"
                     onClick={() => {
+                      const baseUrl =
+                        import.meta.env.VITE_BASE_URL || window.location.origin;
                       navigator.clipboard.writeText(
-                        `${import.meta.env.VITE_BASE_URL || "localhost:5173"
-                        }/meeting/${callDetails?.id}`
+                        `${baseUrl}/meeting/${callDetails?.id}`
                       );
                       toast({ title: "Link Copied!" });
                     }}
