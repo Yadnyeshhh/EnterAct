@@ -44,7 +44,8 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url("../src/assets/fonts/poppins-v22-latin-regular.woff2") format("woff2");
+  src: url("../src/assets/fonts/poppins-v22-latin-regular.woff2")
+    format("woff2");
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
@@ -256,20 +257,4 @@ video {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-.str-video__icon--reactions {
-  display: none !important;
-}
-
-.str-video__icon--screen-share-off {
-  display: none !important;
-}
-
-.str-video__icon--recording-off {
-  display: none !important;
-}
-
-.bg-\[\#19232d\] {
-  display: none !important;
 }
