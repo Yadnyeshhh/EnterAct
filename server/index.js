@@ -8,25 +8,10 @@ import cors from "cors";
 import router from "./router/stream.js";
 import chatRouter from "./router/chat.js";
 
-// frontend ports to allow
-const allowedOrigins = ["http://localhost:5173", process.env.CLIENT_URL].filter(
-  Boolean,
-);
-
+// Enable CORS for all allowed origins (Vercel deployments, localhost, etc.)
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // allow requests with no origin (like mobile apps, curl, or server-to-server)
-      if (
-        !origin ||
-        allowedOrigins.includes(origin) ||
-        allowedOrigins.includes("*")
-      ) {
-        callback(null, true);
-      } else {
-        callback(null, true); // Alternatively allow dynamically or validate strictly
-      }
-    },
+    origin: true,
     credentials: true,
   }),
 );

@@ -119,8 +119,10 @@ const Hero = () => {
                 <Button
                   variant="secondary"
                   onClick={() => {
+                    const baseUrl =
+                      import.meta.env.VITE_BASE_URL || window.location.origin;
                     navigator.clipboard.writeText(
-                      `localhost:5173/meeting/${callDetails?.id}`
+                      `${baseUrl}/meeting/${callDetails?.id}`
                     );
                     toast({ title: "Link Copied!" });
                   }}

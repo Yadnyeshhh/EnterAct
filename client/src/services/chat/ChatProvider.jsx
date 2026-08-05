@@ -26,14 +26,13 @@ const ChatProvider = ({ children }) => {
         const sanitizedId = user.sub.replace(/[^a-z0-9@_-]/gi, "_");
         const apiBaseUrl =
           import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
-        const response = await axios.get(
-          `${apiBaseUrl}/api/v1/chat/chat-token/${sanitizedId}`,
-        );
+        const url = `${apiBaseUrl}/api/v1/chat/chat-token/${sanitizedId}`;
+        const response = await axios.get(url);
         const { token } = response.data;
         if (!token) throw new Error("Token is missing");
         setToken(token);
       } catch (error) {
-        console.error("Error fetching token:", error);
+        console.error("Error fetching chat token:", error?.response || error);
       }
     };
 

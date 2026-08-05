@@ -20,9 +20,8 @@ const VideoProvider = ({ children }) => {
       try {
         const apiBaseUrl =
           import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
-        const response = await axios.get(
-          `${apiBaseUrl}/api/v1/stream/token-provider/${sanitizedId}`,
-        );
+        const url = `${apiBaseUrl}/api/v1/stream/token-provider/${sanitizedId}`;
+        const response = await axios.get(url);
 
         const { token } = response.data;
         if (!token) {
@@ -31,7 +30,7 @@ const VideoProvider = ({ children }) => {
 
         return token;
       } catch (error) {
-        console.error("Error fetching token:", error);
+        console.error("Error fetching video token:", error?.response || error);
         throw error;
       }
     };
