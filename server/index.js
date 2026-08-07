@@ -8,10 +8,13 @@ import cors from "cors";
 import router from "./router/stream.js";
 import chatRouter from "./router/chat.js";
 
-// Enable CORS for all allowed origins (Vercel deployments, localhost, etc.)
+// Enable CORS for   origins (Vercel deployments, localhost)
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:5173", // local
+      process.env.CLIENT_URL, // development
+    ],
     credentials: true,
   }),
 );
@@ -22,6 +25,7 @@ app.use(
 app.get("/", (req, res) => {
   res.send("API running!");
 });
+// console.log(process.env.CLIENT_URL);
 
 app.use("/api/v1/stream", router);
 app.use("/api/v1/chat", chatRouter);
